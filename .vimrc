@@ -1,3 +1,7 @@
+execute pathogen#infect()
+filetype plugin indent on
+filetype plugin on
+
 source $VIMRUNTIME/defaults.vim
 
 if has("vms")
@@ -62,6 +66,7 @@ set si           " Smart indet
 set wrap         " Wrap lines
 syntax on
 set relativenumber
+set autoindent
 
 " No sound on errors
  set noerrorbells
@@ -78,7 +83,7 @@ let mapleader = "\<Space>"
 map <Leader>p :call InsertPDB()<CR>
 
 function! InsertPDB()
-  let trace = expand("import pdb; pdb.set_trace()")
+  let trace = expand("__import__('pdb').set_trace()")
   execute "normal o".trace
 endfunction
 
@@ -86,5 +91,20 @@ endfunction
 nmap <Leader>h :noh<CR>
 
 
-execute pathogen#infect()
+
+" NERDTree shortcut
+map <Leader>n :NERDTreeToggle<CR>
+nmap <Leader>t :TagbarToggle<CR>
+
+" Syntastic settings
+nmap <Leader>c :SyntasticCheck<CR>
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_flake8_post_args="--max-line-length=200"
 

@@ -1,0 +1,9 @@
+[alias]
+	st = status
+[user]
+	email = marcogregorius@gmail.com
+	name = marco
+[core]
+	excludesfile = /home/marco/.gitignore_global
+[oh-my-zsh]
+	hide-status = 1

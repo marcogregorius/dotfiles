@@ -106,4 +106,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll="ls -alF"
 bindkey -M menuselect '^M' .accept-line
-
+bindkey '^ ' autosuggest-accept

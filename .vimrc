@@ -1,5 +1,26 @@
-execute pathogen#infect()
-filetype plugin indent on
+" Specify a directory for plugins
+" For Neovim: ~/.local/share/nvim/plugged
+" Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+Plug 'mileszs/ack.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'morhetz/gruvbox'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-syntastic/syntastic'
+Plug 'majutsushi/tagbar'
+Plug 'bling/vim-airline'
+Plug 'tpope/vim-fugitive'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-surround'
+Plug 'valloric/youcompleteme'
+
+call plug#end()
+
+"execute pathogen#infect()
+"filetype plugin indent on
 filetype plugin on
 
 source $VIMRUNTIME/defaults.vim

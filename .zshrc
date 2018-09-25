@@ -11,6 +11,10 @@
 # ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_DISABLE_RPROMPT=true
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -107,3 +111,7 @@ source $ZSH/oh-my-zsh.sh
 alias ll="ls -alF"
 bindkey -M menuselect '^M' .accept-line
 bindkey '^ ' autosuggest-accept
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+set -g status-right '#(TZ="Asia/Singapore" date )'

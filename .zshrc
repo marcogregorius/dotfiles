@@ -115,3 +115,5 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 set -g status-right '#(TZ="Asia/Singapore" date )'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

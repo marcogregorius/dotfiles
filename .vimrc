@@ -18,6 +18,7 @@ Plug 'tpope/vim-surround'
 Plug 'valloric/youcompleteme'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
+Plug 'craigemery/vim-autotag'
 
 call plug#end()
 
@@ -48,16 +49,6 @@ colorscheme gruvbox
 set bg=dark
 set tags=tags
 
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>6 6gt
-noremap <leader>7 7gt
-noremap <leader>8 8gt
-noremap <leader>9 9gt
-noremap <leader>0 :tablast<cr>
 
 " kj - Get out of Insert mode
   imap jk <Esc>
@@ -104,7 +95,7 @@ set cursorcolumn
  set showmatch    " Show matching bracets when text indic
 
 let mapleader = "\<Space>"
- 
+
 map <Leader>p :call InsertPDB()<CR>
 
 function! InsertPDB()
@@ -152,3 +143,14 @@ set splitright
 
 let g:pymode_options_colorcolumn = 0
 let g:pymode_options_max_line_length = 150
+
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>

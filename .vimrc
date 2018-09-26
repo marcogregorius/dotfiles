@@ -90,6 +90,8 @@ set wrap         " Wrap lines
 syntax on
 set relativenumber
 set autoindent
+set cursorline
+set cursorcolumn
 
 " No sound on errors
  set noerrorbells
@@ -147,3 +149,6 @@ set splitright
 
 " toggle between :paste and :nopaste
   set pastetoggle=<Leader>3
+
+let g:pymode_options_colorcolumn = 0
+let g:pymode_options_max_line_length = 150

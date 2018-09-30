@@ -19,6 +19,7 @@ Plug 'valloric/youcompleteme'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
 Plug 'craigemery/vim-autotag'
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
@@ -79,10 +80,10 @@ set ai           " Auto indent
 set si           " Smart indet
 set wrap         " Wrap lines
 syntax on
-set relativenumber
+"set relativenumber
 set autoindent
 set cursorline
-set cursorcolumn
+"set cursorcolumn
 
 " No sound on errors
  set noerrorbells
@@ -94,9 +95,8 @@ set cursorcolumn
  set magic        " Set magic on, for regular expressions
  set showmatch    " Show matching bracets when text indic
 
-let mapleader = "\<Space>"
-
-map <Leader>p :call InsertPDB()<CR>
+let mapleader = "\<space>"
+nnoremap <Leader>p :call InsertPDB()<CR>
 
 function! InsertPDB()
   let trace = expand("__import__('pdb').set_trace()")
@@ -104,16 +104,16 @@ function! InsertPDB()
 endfunction
 
 " map Leader (space) + h for no highlight search
-nmap <Leader>h :noh<CR>
+nnoremap <Leader>h :noh<CR>
 
 
 
 " NERDTree shortcut
-map <Leader>n :NERDTreeToggle<CR>
-nmap <Leader>t :TagbarToggle<CR>
+nnoremap <Leader>n :NERDTreeToggle<CR>
+nnoremap <Leader>t :TagbarToggle<CR>
 
 " Syntastic settings
-nmap <Leader>c :SyntasticCheck<CR>
+"nnoremap <Leader>c :SyntasticCheck<CR>
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -144,13 +144,19 @@ set splitright
 let g:pymode_options_colorcolumn = 0
 let g:pymode_options_max_line_length = 150
 
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>6 6gt
-noremap <leader>7 7gt
-noremap <leader>8 8gt
-noremap <leader>9 9gt
-noremap <leader>0 :tablast<cr>
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+nnoremap <leader>0 :tablast<cr>
+
+set encoding=utf-8
+set ttimeoutlen=0
+set nobackup
+set noswapfile
+nnoremap <Leader>w :w<CR>

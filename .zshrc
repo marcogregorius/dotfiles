@@ -4,15 +4,19 @@
 # Path to your oh-my-zsh installation.
   export ZSH="/home/marco/.oh-my-zsh"
 
+alias vim="nvim"
+alias vi="nvim"
+alias ta="tmux a"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
+ #ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_DISABLE_RPROMPT=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv dir vcs)
+#POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
 
@@ -75,6 +79,8 @@ plugins=(
   zsh-autosuggestions
   python
   vi-mode
+  virtualenv
+  virtualenvwrapper
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -109,6 +115,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll="ls -alF"
+alias ct="ctags -R ."
 bindkey -M menuselect '^M' .accept-line
 bindkey '^ ' autosuggest-accept
 export VISUAL=vim
@@ -117,3 +124,16 @@ export EDITOR="$VISUAL"
 set -g status-right '#(TZ="Asia/Singapore" date )'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+GOOGLE_APPLICATION_CREDENTIALS="/home/marco/workspace/99-web-listings/web/private/99WL-Vision-b1f7357d4149.json"
+
+# For editing in Vim. run <Ctrl-x><Ctrl-e> to edit
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
+if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
+    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock;
+fi
+
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;

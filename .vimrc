@@ -9,7 +9,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-" Plug 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 Plug 'majutsushi/tagbar'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-fugitive'
@@ -17,16 +17,16 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 Plug 'valloric/youcompleteme'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'python-mode/python-mode', { 'branch': 'develop' }
+"Plug 'python-mode/python-mode', { 'branch': 'develop' }
 Plug 'craigemery/vim-autotag'
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
-"execute pathogen#infect()
-"filetype plugin indent on
-filetype plugin on
+filetype plugin indent on
+"filetype plugin on
 
-source $VIMRUNTIME/defaults.vim
+"source $VIMRUNTIME/defaults.vim
 
 "if has("vms")
 	"set nobackup          " do not keep a backup file, use versions instead
@@ -37,14 +37,14 @@ source $VIMRUNTIME/defaults.vim
 	"endif
 "endif
 
-if &t_Co > 2 || has("gui_running")
-			      " Switch on highlighting the last used search
-			      " pattern.
-	set hlsearch
-endif
+"if &t_Co > 2 || has("gui_running")
+			      "" Switch on highlighting the last used search
+			      "" pattern.
+	"set hlsearch
+"endif
 
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-set runtimepath^=~/.vim/bundle/ack.vim
+"set runtimepath^=~/.vim/bundle/ctrlp.vim
+"set runtimepath^=~/.vim/bundle/ack.vim
 colorscheme gruvbox
 set bg=dark
 set tags=tags
@@ -54,21 +54,22 @@ set tags=tags
   imap jk <Esc>
   imap jj <Esc>
   imap ;; <Esc>
+  imap kj <Esc>
 
 " https://github.com/mileszs/ack.vim#can-i-use-ag-the-silver-searcher-with-this
 " The Silver Searcher
 " https://robots.thoughtbot.com/faster-grepping-in-vim<Paste>
 if executable('ag')
 "   " Use ag over grep
-     set grepprg=ag\ --nogroup\ --nocolor
+	set grepprg=ag\ --nogroup\ --nocolor
 
 "       " Use ag in CtrlP for listing files. Lightning fast and respects
 "       .gitignore
-         let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " ag is fast enough that CtrlP doesn't need to cache
-   let g:ctrlp_use_caching = 0
-   let g:ackprg = 'ag --vimgrep'
+	let g:ctrlp_use_caching = 0
+	let g:ackprg = 'ag --vimgrep'
 endif
 
 set showcmd      " Shows what you are typing as a command
@@ -78,11 +79,10 @@ set nu           " Set linenumber
 set ai           " Auto indent
 set si           " Smart indet
 set wrap         " Wrap lines
-syntax on
-set relativenumber
+"set relativenumber
 set autoindent
 set cursorline
-set cursorcolumn
+"set cursorcolumn
 
 " No sound on errors
  set noerrorbells
@@ -93,8 +93,13 @@ set cursorcolumn
  set incsearch    " Make search act like search in modern browsers
  set magic        " Set magic on, for regular expressions
  set showmatch    " Show matching bracets when text indic
+ set foldmethod=indent
+ set foldnestmax=10
+ set nofoldenable
+ set foldlevel=2
 
 let mapleader = "\<Space>"
+set ttimeoutlen=0
 
 map <Leader>p :call InsertPDB()<CR>
 
@@ -112,6 +117,9 @@ nmap <Leader>h :noh<CR>
 map <Leader>n :NERDTreeToggle<CR>
 nmap <Leader>t :TagbarToggle<CR>
 
+" easymotion fast find s
+map s <Plug>(easymotion-s)
+
 " Syntastic settings
 nmap <Leader>c :SyntasticCheck<CR>
 set statusline+=%#warningmsg#
@@ -119,11 +127,11 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_flake8_post_args="--max-line-length=200"
+"let g:syntastic_check_on_wq = 1
+let g:syntastic_python_flake8_post_args="--max-line-length=200 --ignore=E303"
 
 let python_highlight_all=1
 syntax on
@@ -139,7 +147,7 @@ set splitbelow
 set splitright
 
 " toggle between :paste and :nopaste
-  set pastetoggle=<Leader>3
+"set pastetoggle=<Leader>v
 
 let g:pymode_options_colorcolumn = 0
 let g:pymode_options_max_line_length = 150
@@ -154,3 +162,17 @@ noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
+nnoremap H gT
+nnoremap L gt
+
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <C-S> :!git save<CR>
+
+" Gif config
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+" Gif config
+nmap s <Plug>(easymotion-s2)
+nmap t <Plug>(easymotion-t2)

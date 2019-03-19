@@ -3,8 +3,8 @@
 # Path to your oh-my-zsh installation.
   export ZSH="/home/marco/.oh-my-zsh"
 
-alias vim="nvim"
-alias vi="nvim"
+# alias vim="nvim"
+# alias vi="nvim"
 alias ta="tmux a"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -14,7 +14,7 @@ alias ta="tmux a"
  #ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_DISABLE_RPROMPT=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv dir vcs)
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ip virtualenv dir vcs)
 #POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
@@ -78,8 +78,8 @@ plugins=(
   zsh-autosuggestions
   python
   #vi-mode
-  virtualenv
-  virtualenvwrapper
+  #virtualenv
+  #virtualenvwrapper
   kubectl
   z
 )

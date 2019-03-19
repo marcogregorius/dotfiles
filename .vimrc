@@ -170,9 +170,11 @@ nnoremap <Leader>q :q<CR>
 nnoremap <C-S> :!git save<CR>
 
 " Gif config
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+"map  / <Plug>(easymotion-sn)
+"omap / <Plug>(easymotion-tn)
 
 " Gif config
 nmap s <Plug>(easymotion-s2)
 nmap t <Plug>(easymotion-t2)
+
+set rtp+=~/.vim/plugged/YouCompleteMe

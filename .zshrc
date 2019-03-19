@@ -1,6 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+# export PATH=$HOME/bin:/usr/local/bin:$PATH 
 # Path to your oh-my-zsh installation.
   export ZSH="/home/marco/.oh-my-zsh"
 
@@ -78,9 +77,11 @@ plugins=(
   zsh-syntax-highlighting
   zsh-autosuggestions
   python
-  vi-mode
+  #vi-mode
   virtualenv
   virtualenvwrapper
+  kubectl
+  z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -125,7 +126,7 @@ set -g status-right '#(TZ="Asia/Singapore" date )'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-GOOGLE_APPLICATION_CREDENTIALS="/home/marco/workspace/99-web-listings/web/private/99WL-Vision-b1f7357d4149.json"
+#GOOGLE_APPLICATION_CREDENTIALS="/home/marco/workspace/99-web-listings/web/private/99WL-Vision-b1f7357d4149.json"
 
 # For editing in Vim. run <Ctrl-x><Ctrl-e> to edit
 autoload -U edit-command-line
@@ -137,3 +138,16 @@ if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
 fi
 
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;
+
+# Can only pip install in virtualenv
+export PIP_REQUIRE_VIRTUALENV=true
+# must use "syspip install something" if want to install system wide
+syspip() {
+    PIP_REQUIRE_VIRTUALENV="" sudo pip "$@"
+}
+
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
+
+# Load rbenv automatically
+#eval "$(rbenv init -)"
+

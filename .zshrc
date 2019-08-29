@@ -11,8 +11,8 @@ alias ta="tmux a"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
- #ZSH_THEME="robbyrussell"
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ ZSH_THEME="robbyrussell"
+#ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_DISABLE_RPROMPT=true
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ip virtualenv dir vcs)
 #POWERLEVEL9K_PROMPT_ON_NEWLINE=true

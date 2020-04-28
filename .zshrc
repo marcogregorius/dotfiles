@@ -14,9 +14,9 @@ alias ta="tmux a"
  ZSH_THEME="robbyrussell"
 #ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_DISABLE_RPROMPT=true
-#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ip virtualenv dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host virtualenv dir vcs)
 #POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+#POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
 
 # Set list of themes to pick from when loading at random
@@ -78,10 +78,12 @@ plugins=(
   zsh-autosuggestions
   python
   #vi-mode
-  #virtualenv
+  virtualenv
   #virtualenvwrapper
   kubectl
   z
+  kubetail
+  redis-cli
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -146,8 +148,36 @@ syspip() {
     PIP_REQUIRE_VIRTUALENV="" sudo pip "$@"
 }
 
+syspip3() {
+    PIP_REQUIRE_VIRTUALENV="" sudo pip3 "$@"
+}
+
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
 # Load rbenv automatically
 #eval "$(rbenv init -)"
 
+
+datem() {
+    if (( $# == 0 ))
+    then
+        while read LINE; do date -d @$(  echo "$LINE / 1000000" | bc); done
+    else
+        date -d @$(  echo "$1 / 1000000" | bc)
+    fi
+}
+
+timecurl() {
+    curl -s -o /dev/null -w '%{time_total}' $1
+}
+
+alias k=kubectl
+alias kg='kubectl get'
+alias kgp='kubectl get po'
+
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+
+alias activate=". env/bin/activate"
+
+alias ag="rg"

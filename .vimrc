@@ -14,7 +14,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 Plug 'majutsushi/tagbar'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-fugitive'
@@ -25,6 +25,10 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'python-mode/python-mode', { 'branch': 'develop' }
 Plug 'craigemery/vim-autotag'
 Plug 'easymotion/vim-easymotion'
+"Plug 'maralla/validator.vim'
+Plug 'w0rp/ale'
+Plug 'Yggdroot/indentLine'
+Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
 
@@ -82,7 +86,13 @@ set nocompatible " Necessary for lots for cool vim things
 set ruler        " Always show current positions along the bottom
 set nu           " Set linenumber
 set ai           " Auto indent
-set si           " Smart indet
+"set si           " Smart indet
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
 set wrap         " Wrap lines
 "set relativenumber
 set autoindent
@@ -102,6 +112,7 @@ set cursorline
  set foldnestmax=10
  set nofoldenable
  set foldlevel=2
+ set colorcolumn=120
 
 let mapleader = "\<Space>"
 set ttimeoutlen=0
@@ -123,7 +134,7 @@ map <Leader>n :NERDTreeToggle<CR>
 nmap <Leader>t :TagbarToggle<CR>
 
 " easymotion fast find s
-map s <Plug>(easymotion-s)
+"map <Leader>s <Plug>(easymotion-s)
 
 " Syntastic settings
 nmap <Leader>c :SyntasticCheck<CR>
@@ -136,7 +147,10 @@ let g:syntastic_python_checkers = ['flake8']
 "let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 "let g:syntastic_check_on_wq = 1
-let g:syntastic_python_flake8_post_args="--max-line-length=200 --ignore=E303"
+let g:syntastic_python_flake8_post_args="--max-line-length=120 --ignore=E303,W504"
+
+" validator settings
+"let g:validator_python_checkers = ['flake8']
 
 let python_highlight_all=1
 syntax on
@@ -153,6 +167,7 @@ set splitright
 
 " toggle between :paste and :nopaste
 "set pastetoggle=<Leader>v
+nmap <leader>v :set paste!<CR>
 
 let g:pymode_options_colorcolumn = 0
 let g:pymode_options_max_line_length = 150
@@ -178,8 +193,21 @@ nnoremap <C-S> :!git save<CR>
 "map  / <Plug>(easymotion-sn)
 "omap / <Plug>(easymotion-tn)
 
-" Gif config
-nmap s <Plug>(easymotion-s2)
-nmap t <Plug>(easymotion-t2)
-
 set rtp+=~/.vim/plugged/YouCompleteMe
+
+" ale settings
+let g:ale_python_flake8_options = '--ignore=E501,E201,E202,W504'
+let g:ale_cache_executable_check_failures = 1
+
+map <Leader>s :Gstatus<CR>
+
+" 2 spaces indent for yaml files
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+
+" for kitty to resize split panes with mouse
+set mouse+=a
+if &term =~ '^screen'
+    " tmux knows the extended mouse mode
+    set ttymouse=xterm2
+endif

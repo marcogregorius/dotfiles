@@ -11,12 +11,13 @@ alias ta="tmux a"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
- ZSH_THEME="robbyrussell"
-#ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_DISABLE_RPROMPT=true
+ #ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(kubecontext)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host virtualenv dir vcs)
 #POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 #POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+POWERLEVEL9K_COLOR_SCHEME='light'
 
 
 # Set list of themes to pick from when loading at random
@@ -167,6 +168,11 @@ datem() {
     fi
 }
 
+datenow() {
+    NOW=$(date '+%s')
+    echo "$(($NOW * 1000000))"
+}
+
 timecurl() {
     curl -s -o /dev/null -w '%{time_total}' $1
 }
@@ -174,6 +180,9 @@ timecurl() {
 alias k=kubectl
 alias kg='kubectl get'
 alias kgp='kubectl get po'
+alias kcc='kubectl config current-context'
+alias sg-prod='kubectl config use-context sg-prod'
+alias dev-sg-dev='kubectl config use-context dev-sg-dev'
 
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -181,3 +190,10 @@ alias kgp='kubectl get po'
 alias activate=". env/bin/activate"
 
 alias ag="rg"
+
+export PGPASSFILE='/home/marco/.pgpass'
+
+alias curltime="curl -w \"@$HOME/.curl-format.txt\" -o /dev/null -s "
+
+#source ~/kube-ps1/kube-ps1.sh
+#PROMPT='$(kube_ps1)'$PROMPT

@@ -12,11 +12,13 @@ call plug#begin('~/.vim/plugged')
 Plug 'mileszs/ack.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'morhetz/gruvbox'
+Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 "Plug 'vim-syntastic/syntastic'
 Plug 'majutsushi/tagbar'
 Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
@@ -26,9 +28,12 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'craigemery/vim-autotag'
 Plug 'easymotion/vim-easymotion'
 "Plug 'maralla/validator.vim'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Yggdroot/indentLine'
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'ludovicchabant/vim-gutentags'
+Plug 'leafgarland/typescript-vim'
+Plug 'NLKNguyen/papercolor-theme'
 
 call plug#end()
 
@@ -54,9 +59,13 @@ filetype plugin indent on
 
 "set runtimepath^=~/.vim/bundle/ctrlp.vim
 "set runtimepath^=~/.vim/bundle/ack.vim
-colorscheme gruvbox
-set bg=dark
+"colorscheme gruvbox
+"colorscheme solarized
+colorscheme PaperColor
+let g:solarized_termcolors=256
+set bg=light
 set tags=tags
+let g:airline_theme='papercolor'
 
 
 " kj - Get out of Insert mode
@@ -131,6 +140,7 @@ nmap <Leader>h :noh<CR>
 
 " NERDTree shortcut
 map <Leader>n :NERDTreeToggle<CR>
+map <Leader>m :NERDTreeFind<CR>
 nmap <Leader>t :TagbarToggle<CR>
 
 " easymotion fast find s
@@ -184,6 +194,7 @@ noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 nnoremap H gT
 nnoremap L gt
+nnoremap T :tabnew 
 
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
@@ -205,9 +216,15 @@ map <Leader>s :Gstatus<CR>
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
+"au! BufNewFile,BufReadPost *.{tsx} set filetype=tsx foldmethod=indent
+"autocmd FileType tsx setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+let g:typescript_indent_disable = 1
+
 " for kitty to resize split panes with mouse
 set mouse+=a
 if &term =~ '^screen'
     " tmux knows the extended mouse mode
     set ttymouse=xterm2
 endif
+
+let g:coc_disable_startup_warning = 1

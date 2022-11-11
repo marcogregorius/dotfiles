@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/marco/.oh-my-zsh"
+export ZSH="/home/${USER}/.oh-my-zsh"
 
 # alias vim="nvim"
 # alias vi="nvim"
@@ -117,7 +117,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll="ls -alF"
 alias ct="ctags -R ."
-bindkey -M menuselect '^M' .accept-line
+# bindkey -M menuselect '^M' .accept-line
 bindkey '^ ' autosuggest-accept
 export VISUAL=vim
 export EDITOR="$VISUAL"
